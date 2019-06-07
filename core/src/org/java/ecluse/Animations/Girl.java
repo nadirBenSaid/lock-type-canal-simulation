@@ -23,7 +23,7 @@ public class Girl extends Person implements Disposable{
 
 	@Override
 	public void flagController(){
-		if (Gdx.app.getType() == ApplicationType.Desktop) {
+		if (!(Gdx.app.getType() == ApplicationType.Android)) {
 			left = Gdx.input.isKeyPressed(Keys.LEFT);
 			right = Gdx.input.isKeyPressed(Keys.RIGHT);
 
