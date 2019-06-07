@@ -10,6 +10,8 @@ public class EcluseController{
 
 	ShapeRenderer shapeRen;
 
+	Defect defect;
+
 	EcluseWater ecluseWater;
 	Captor lowerCaptor;
 	Captor higherCaptor;
@@ -21,6 +23,9 @@ public class EcluseController{
 	Boat boat;
 
 	public EcluseController(Boat boat){
+
+		defect = new Defect();
+
 		ecluseWater = new EcluseWater();
 		shapeRen = new ShapeRenderer();
 		lowerCaptor = new Captor(boat, ecluseWater, false);
@@ -74,13 +79,20 @@ public class EcluseController{
 
 	public void render(SpriteBatch batch){
 		this.controller();
+		defect.causeDefect();
 		ecluseWater.render(batch);
-		higherCaptor.update();
-		lowerCaptor.update();
-		rightValve.update();
-		leftValve.update();
-		rightGate.update();
-		leftGate.update();
+		if (!defect.captorDefect) {
+			higherCaptor.update();
+			lowerCaptor.update();
+		}
+		if (!defect.valveDefect) {
+			rightValve.update();
+			leftValve.update();
+		}
+		if (!defect.gateDefect) {
+			rightGate.update();
+			leftGate.update();
+		}
 	}
 
 	public void shapeRender(){

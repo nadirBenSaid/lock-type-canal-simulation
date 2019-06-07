@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.Application.ApplicationType;
 
 public class Girl extends Person implements Disposable{
 
@@ -13,29 +14,46 @@ public class Girl extends Person implements Disposable{
 
 		boolean left;
 		boolean right;
-		// boolean jump;
 
 	public Girl(){
 		super("girl", IDLE_FRAME_COLS, IDLE_FRAME_ROWS, WALK_FRAME_COLS, WALK_FRAME_ROWS, JUMP_FRAME_COLS, JUMP_FRAME_ROWS);
+		this.speedX = 2f;
+		this.goRight = false;
 	}
 
 	@Override
 	public void flagController(){
+		if (Gdx.app.getType() == ApplicationType.Desktop) {
+			left = Gdx.input.isKeyPressed(Keys.LEFT);
+			right = Gdx.input.isKeyPressed(Keys.RIGHT);
 
-		left = Gdx.input.isKeyPressed(Keys.LEFT);
-		right = Gdx.input.isKeyPressed(Keys.RIGHT);
-		// jump = Gdx.input.isKeyPressed(Keys.UP);
-
-		if (right) { 
-			this.isMovingX = true;
-			this.goRight=true;
-		}else if(left){
-			this.isMovingX = true;
-			this.goRight=false;
+			if (right) { 
+				this.isMovingX = true;
+				this.goRight=true;
+			}else if(left){
+				this.isMovingX = true;
+				this.goRight=false;
+			}else{
+				this.isMovingX = false;
+			}	
 		}else{
-			this.isMovingX = false;
-		}
+			int loop = (int) stateTime%40;
+			if (loop>0 && loop<=15) {
+				isMovingX = true;
+				speedX = 1;
+			}else if(loop > 20 && loop < 25) {
+				isMovingX = true;
+				speedX = 2f;
+			}else{
+				isMovingX = false;
+			}
 
+			if (this.posX<=this.trajectoryMinX) { 
+				this.goRight=true;
+			}else if(this.posX>=this.trajectoryMaxX){
+				this.goRight=false;
+			}
+		}
 	}
 
 	@Override
@@ -64,10 +82,9 @@ public class Girl extends Person implements Disposable{
 
 	@Override
 	public void render(SpriteBatch batch){
-		// this.goRight = false;
 		this.flagController();
 		this.posController();
 		this.stateController();
-		batch.draw(currentFrame, this.posX-256 , this.posY-8, 0, 0, 416f, 454f, 0.25f, 0.25f, 0);
+		batch.draw(currentFrame, this.posX , this.posY-2, 0, 0, 416f, 454f, 0.25f, 0.25f, 0);
 	}
 }
