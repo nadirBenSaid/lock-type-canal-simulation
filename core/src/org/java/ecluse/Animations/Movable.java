@@ -19,6 +19,10 @@ public abstract class Movable{
 	float trajectoryMinY = 0;
 	float trajectoryMaxY = 0;
 
+	public Movable(){
+		
+	}
+
 	public Movable(float speedX, float speedY, float initialX, float initialY, float minX, float maxX, float minY, float maxY){
 		this.speedX = speedX;
 		this.speedY = speedY;

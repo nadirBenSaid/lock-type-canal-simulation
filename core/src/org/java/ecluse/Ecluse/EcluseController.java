@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.GL20;
 
 public class EcluseController{
 
@@ -19,8 +20,6 @@ public class EcluseController{
 
 	Boat boat;
 
-	// boolean ecluseReady;
-
 	public EcluseController(Boat boat){
 		ecluseWater = new EcluseWater();
 		shapeRen = new ShapeRenderer();
@@ -35,14 +34,14 @@ public class EcluseController{
 	}
 
 	public void controller(){
-		if (rightValve.isOpen) {
+		if (leftValve.isOpen) {
 			ecluseWater.isMovingY = true;
 			ecluseWater.goUp = true;
 			if (lowerCaptor.inEcluse) {
 				boat.isMovingY = true;
 				boat.goUp = true;
 			}
-		}else if (leftValve.isOpen) {
+		}else if (rightValve.isOpen) {
 			ecluseWater.isMovingY = true;
 			ecluseWater.goUp = false;
 			if (higherCaptor.inEcluse) {
@@ -71,12 +70,6 @@ public class EcluseController{
 			}	
 		}
 
-		// if (rightGate.isOpen || leftGate.isOpen) {
-		// 	boat.isMovingX = true;
-		// }else{
-		// 	boat.isMovingX = false;
-		// }
-
 	}
 
 	public void render(SpriteBatch batch){
@@ -91,10 +84,16 @@ public class EcluseController{
 	}
 
 	public void shapeRender(){
+		Gdx.gl.glEnable(GL20.GL_BLEND);
 		shapeRen.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRen.setColor(Color.BLACK);
-		shapeRen.rect(800-16, 0, 32, Gdx.graphics.getHeight()/2);
-		shapeRen.rect(Gdx.graphics.getWidth()-816, 0, 32, Gdx.graphics.getHeight()/2+16);
+		leftValve.render(shapeRen);
+		rightValve.render(shapeRen);
+		shapeRen.setColor(new Color(1,1,1,0.5f));
+		shapeRen.rect(800-16, 0, 32, Gdx.graphics.getHeight()/2-400);
+		shapeRen.rect(Gdx.graphics.getWidth()-816, 0, 32, Gdx.graphics.getHeight()/2-400);
+		shapeRen.rect(800-16, Gdx.graphics.getHeight()/2-400+48, 32, 230);
+		shapeRen.rect(Gdx.graphics.getWidth()-816, Gdx.graphics.getHeight()/2-400+48, 32, 320);
 		shapeRen.end();
 	}
 
