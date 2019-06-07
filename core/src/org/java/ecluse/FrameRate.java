@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.graphics.Color;
 
 public class FrameRate implements Disposable{
     
@@ -37,7 +38,9 @@ public class FrameRate implements Disposable{
 
     public void render() {
         batch.begin();
-        font.draw(batch, (int)frameRate + " fps", 3, Gdx.graphics.getHeight() - 3);
+        font.setColor(Color.RED);
+        font.getData().setScale(3, 3);
+        font.draw(batch, (int)frameRate + " fps", 4, Gdx.graphics.getHeight() - 4);
         batch.end();
     }
 

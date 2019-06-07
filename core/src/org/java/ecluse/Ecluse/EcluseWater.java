@@ -19,15 +19,15 @@ public class EcluseWater extends Movable implements Disposable{
 	boolean isBottom = false;
 
 	public EcluseWater(){
-		super(0, 0.25f, 128*25/4, Gdx.graphics.getHeight()/2-128+45, 128*25/4, 128*25/4, Gdx.graphics.getHeight()/2-128, Gdx.graphics.getHeight()/2-128+90);
+		super(0, 0.25f, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/2-128+45, Gdx.graphics.getWidth()/3, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/2-128, Gdx.graphics.getHeight()/2-128+90);
 		water = new Texture("Env/18.png");
 		water.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 		surfaceWater = new Texture("Env/17.png");
 		surfaceWater.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.MirroredRepeat);
 		waterRegion3 = new TextureRegion(water);
-		waterRegion3.setRegion( 0, 0, Gdx.graphics.getWidth()-water.getWidth()/2*25, Gdx.graphics.getHeight()/2);
+		waterRegion3.setRegion( 0, 0, Gdx.graphics.getWidth()/3+1, Gdx.graphics.getHeight()/2);
 		surfaceWaterRegion3 = new TextureRegion(surfaceWater);
-		surfaceWaterRegion3.setRegion( 0, 0, 4*(Gdx.graphics.getWidth()-water.getWidth()/2*25), 128);
+		surfaceWaterRegion3.setRegion( 0, 0, Gdx.graphics.getWidth()/3*4+4, 128);
 	}
 
 	public void flagController(){
@@ -61,7 +61,7 @@ public class EcluseWater extends Movable implements Disposable{
 		this.posController();
 		this.stateController();
 		batch.draw(waterRegion3, this.posX, this.posY-Gdx.graphics.getHeight()/2);
-		batch.draw(surfaceWaterRegion3, this.posX , this.posY, 0, 0, 4*(Gdx.graphics.getWidth()-water.getWidth()/2*25), 128, 0.25f, 0.25f, 0);
+		batch.draw(surfaceWaterRegion3, this.posX , this.posY, 0, 0, Gdx.graphics.getWidth()/3*4+4, 128, 0.25f, 0.25f, 0);
 	}
 
 	public void dispose(){

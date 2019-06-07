@@ -20,9 +20,9 @@ public class Valve extends Movable{
 		this.captorLower = captorLower;
 		this.isLeft = isLeft;
 		if (isLeft) {
-			this.posX = 800-4;
+			this.posX = Gdx.graphics.getWidth()/3-4;
 		}else{
-			this.posX = Gdx.graphics.getWidth()-804;
+			this.posX = Gdx.graphics.getWidth()*2/3-4;
 		}
 		this.posY = Gdx.graphics.getHeight()/2-400;
 		this.isMovingY = true;

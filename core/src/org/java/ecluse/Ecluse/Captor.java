@@ -21,13 +21,13 @@ public class Captor{
 	public void setBoatNearby(){
 		if (!this.isUpper){
 
-			if (this.boat.posX > 400 && this.boat.posX < 800 && this.boat.goRight) {
+			if (this.boat.posX > Gdx.graphics.getWidth()/3-360 && this.boat.posX < Gdx.graphics.getWidth()/3 && this.boat.goRight) {
 				this.boatNearby = true;
 			}else{
 				this.boatNearby = false;
 			}
 
-			if (this.boat.posX > 800 && this.boat.posX < Gdx.graphics.getWidth()-800 && this.boat.goRight) {
+			if (this.boat.posX > Gdx.graphics.getWidth()/3 && this.boat.posX < Gdx.graphics.getWidth()/3*2 && this.boat.goRight) {
 				this.inEcluse = true;
 			}else{
 				this.inEcluse = false;
@@ -35,13 +35,13 @@ public class Captor{
 
 		}else{
 
-			if (this.boat.posX < Gdx.graphics.getWidth()-400-350 && this.boat.posX > Gdx.graphics.getWidth()-800-350 && !this.boat.goRight) {
+			if (this.boat.posX < Gdx.graphics.getWidth()/3*2+10 && this.boat.posX > Gdx.graphics.getWidth()/3*2-350 && !this.boat.goRight) {
 				this.boatNearby = true;
 			}else{
 				this.boatNearby = false;
 			}
 
-			if (this.boat.posX > 800-350 && this.boat.posX < Gdx.graphics.getWidth()-800-350 && !this.boat.goRight) {
+			if (this.boat.posX > Gdx.graphics.getWidth()/3-350 && this.boat.posX < Gdx.graphics.getWidth()/3*2-350 && !this.boat.goRight) {
 				this.inEcluse = true;
 			}else{
 				this.inEcluse = false;

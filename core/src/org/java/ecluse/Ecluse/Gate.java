@@ -21,10 +21,10 @@ public class Gate extends Movable{
 		this.isLeft = isLeft;
 		this.posY = Gdx.graphics.getHeight()/2-170+48;
 		if (isLeft) {
-			this.posX = 800-4;
+			this.posX = Gdx.graphics.getWidth()/3-4;
 			this.trajectoryMinY = this.posY-140;
 		}else{
-			this.posX = Gdx.graphics.getWidth()-804;
+			this.posX = Gdx.graphics.getWidth()*2/3-4;
 			this.trajectoryMinY = this.posY-50;
 		}
 		this.isMovingY = true;

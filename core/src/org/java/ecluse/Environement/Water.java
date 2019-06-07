@@ -22,24 +22,24 @@ public class Water implements Disposable{
 		water = new Texture("Env/18.png");
 		water.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 		waterRegion1 = new TextureRegion(water);
-		waterRegion1.setRegion( 0, 0, water.getWidth()/4*25, Gdx.graphics.getHeight()/2-water.getHeight());
+		waterRegion1.setRegion( 0, 0, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/2-water.getHeight());
 		waterRegion2 = new TextureRegion(water);
-		waterRegion2.setRegion( 0, 0, water.getWidth()/4*25, Gdx.graphics.getHeight()/2-water.getHeight()+90);
+		waterRegion2.setRegion( 0, 0, Gdx.graphics.getWidth()/3+1, Gdx.graphics.getHeight()/2-water.getHeight()+90);
 
 		surfaceWater = new Texture("Env/17.png");
 		surfaceWater.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.MirroredRepeat);
 		surfaceWaterRegion2 = new TextureRegion(surfaceWater);
-		surfaceWaterRegion2.setRegion( 0, 0, water.getWidth()*25, water.getHeight());
+		surfaceWaterRegion2.setRegion( 0, 0, Gdx.graphics.getWidth()/3*4, water.getHeight());
 		surfaceWaterRegion1 = new TextureRegion(surfaceWater);
-		surfaceWaterRegion1.setRegion( 0, 0, water.getWidth()*25, water.getHeight());
+		surfaceWaterRegion1.setRegion( 0, 0, Gdx.graphics.getWidth()/3*4+4, water.getHeight());
 
 	}
 
 	public void render(SpriteBatch batch){
 		batch.draw(waterRegion1, 0, 0);
-		batch.draw(waterRegion2, Gdx.graphics.getWidth()-water.getWidth()/4*25, 0);
-		batch.draw(surfaceWaterRegion1, 0, Gdx.graphics.getHeight()/2-water.getHeight(), 0, 0, water.getWidth()*25, 128, 0.25f, 0.25f, 0);
-		batch.draw(surfaceWaterRegion2, Gdx.graphics.getWidth()-water.getWidth()/4*25, Gdx.graphics.getHeight()/2-water.getHeight()+90, 0, 0, water.getWidth()*25, 128, 0.25f, 0.25f, 0);
+		batch.draw(waterRegion2, Gdx.graphics.getWidth()*2/3, 0);
+		batch.draw(surfaceWaterRegion1, 0, Gdx.graphics.getHeight()/2-water.getHeight(), 0, 0, Gdx.graphics.getWidth()/3*4, 128, 0.25f, 0.25f, 0);
+		batch.draw(surfaceWaterRegion2, Gdx.graphics.getWidth()*2/3, Gdx.graphics.getHeight()/2-water.getHeight()+90, 0, 0, Gdx.graphics.getWidth()/3*4+4, 128, 0.25f, 0.25f, 0);
 	}
 
 	public void dispose(){
