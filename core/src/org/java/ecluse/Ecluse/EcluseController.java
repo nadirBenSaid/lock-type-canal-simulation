@@ -25,10 +25,10 @@ public class EcluseController{
 		shapeRen = new ShapeRenderer();
 		lowerCaptor = new Captor(boat, ecluseWater, false);
 		higherCaptor = new Captor(boat, ecluseWater, true);
-		rightValve = new Valve(higherCaptor, lowerCaptor, true);
-		leftValve = new Valve(higherCaptor, lowerCaptor, false);
 		rightGate = new Gate(higherCaptor, lowerCaptor, ecluseWater, true);
 		leftGate = new Gate(higherCaptor, lowerCaptor, ecluseWater, false);
+		rightValve = new Valve(higherCaptor, lowerCaptor, rightGate, true);
+		leftValve = new Valve(higherCaptor, lowerCaptor, rightGate, false);
 
 		this.boat = boat;
 	}
@@ -55,7 +55,7 @@ public class EcluseController{
 		}
 
 		if (lowerCaptor.boatNearby || higherCaptor.inEcluse) {
-			if (leftGate.isOpen) {
+			if (rightGate.isOpen) {
 				boat.isMovingX = true;
 			}else{
 				boat.isMovingX = false;
@@ -63,7 +63,7 @@ public class EcluseController{
 		}
 
 		if (higherCaptor.boatNearby || lowerCaptor.inEcluse) {
-			if (rightGate.isOpen) {
+			if (leftGate.isOpen) {
 				boat.isMovingX = true;
 			}else{
 				boat.isMovingX = false;
@@ -89,6 +89,8 @@ public class EcluseController{
 		shapeRen.setColor(Color.BLACK);
 		leftValve.render(shapeRen);
 		rightValve.render(shapeRen);
+		leftGate.render(shapeRen);
+		rightGate.render(shapeRen);
 		shapeRen.setColor(new Color(1,1,1,0.5f));
 		shapeRen.rect(800-16, 0, 32, Gdx.graphics.getHeight()/2-400);
 		shapeRen.rect(Gdx.graphics.getWidth()-816, 0, 32, Gdx.graphics.getHeight()/2-400);

@@ -41,7 +41,7 @@ public class Captor{
 				this.boatNearby = false;
 			}
 
-			if (this.boat.posX > 800 && this.boat.posX < Gdx.graphics.getWidth()-800-350 && !this.boat.goRight) {
+			if (this.boat.posX > 800-350 && this.boat.posX < Gdx.graphics.getWidth()-800-350 && !this.boat.goRight) {
 				this.inEcluse = true;
 			}else{
 				this.inEcluse = false;

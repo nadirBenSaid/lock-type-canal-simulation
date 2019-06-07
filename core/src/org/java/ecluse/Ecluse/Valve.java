@@ -4,19 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Valve extends Movable{
+
+	Gate gate;
 	
 	Captor captorHigher;
 	Captor captorLower;
 
-	boolean isRight;
+	boolean isLeft;
 	boolean isOpen;
 
-	public Valve(Captor captorHigher, Captor captorLower, boolean isRight){
+	public Valve(Captor captorHigher, Captor captorLower, Gate gate, boolean isLeft){
 		super();
+		this.gate = gate;
 		this.captorHigher = captorHigher;
 		this.captorLower = captorLower;
-		this.isRight = isRight;
-		if (isRight) {
+		this.isLeft = isLeft;
+		if (isLeft) {
 			this.posX = 800-4;
 		}else{
 			this.posX = Gdx.graphics.getWidth()-804;
@@ -29,7 +32,7 @@ public class Valve extends Movable{
 	}
 
 	public void openValve(){
-		if (this.isRight){
+		if (this.isLeft){
 
 			if (this.captorLower.boatNearby || this.captorHigher.inEcluse) {
 				this.goUp = false;
@@ -39,7 +42,7 @@ public class Valve extends Movable{
 			
 		}else{
 
-			if (this.captorHigher.boatNearby || this.captorLower.inEcluse) {
+			if ((this.captorHigher.boatNearby || this.captorLower.inEcluse)&&this.gate.isClose) {
 				this.goUp = false;
 			}else{
 				this.goUp = true;
