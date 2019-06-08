@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 public class Boat extends Movable implements Disposable{
 
-	private static final int FRAME_COLS = 11, FRAME_ROWS = 14;
+	private static final int FRAME_COLS = 12, FRAME_ROWS = 13;
 
 	Animation<TextureRegion> boatAnimation;
 	TextureRegion currentFrame;
@@ -20,7 +20,7 @@ public class Boat extends Movable implements Disposable{
 	boolean nearEcluse = false;
 
 	public Boat() {
-		super(3f, 0.25f, -350, Gdx.graphics.getHeight()/2-200, -350, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/2-200, Gdx.graphics.getHeight()/2-200+90);
+		super(3f, 0.25f, -350, Gdx.graphics.getHeight()/2-238, -350, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/2-238, Gdx.graphics.getHeight()/2-238+90);
 		boatSheet = new Texture("Animation/boat.png");
 		TextureRegion[][] tmp = TextureRegion.split(boatSheet, 
 			boatSheet.getWidth() / FRAME_COLS,
@@ -29,7 +29,7 @@ public class Boat extends Movable implements Disposable{
 		int index = 0;
 		for (int i = 0; i < FRAME_ROWS; i++) {
 			for (int j = 0; j < FRAME_COLS; j++) {
-				if (i==13 && j>6) {}
+				if (i==12 && j>5) {}
 				else{
 					boatFrames[index++] = tmp[i][j];
 				}
@@ -94,7 +94,7 @@ public class Boat extends Movable implements Disposable{
 		this.flagController();
 		this.posController();
 		this.stateController();
-		batch.draw(currentFrame, this.posX , this.posY, 0, 0, 1000f, 800f, 0.35f, 0.35f, 0);
+		batch.draw(currentFrame, this.posX , this.posY, 0, 0, 512f, 512f, 0.69f, 0.69f, 0);
 	}
 
 	public void dispose() {

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class EcluseController{
 
@@ -22,6 +23,8 @@ public class EcluseController{
 
 	Boat boat;
 
+	BitmapFont font;
+
 	public EcluseController(Boat boat){
 
 		defect = new Defect();
@@ -36,6 +39,10 @@ public class EcluseController{
 		leftValve = new Valve(higherCaptor, lowerCaptor, rightGate, false);
 
 		this.boat = boat;
+
+		font = new BitmapFont();
+		font.setColor(Color.RED);
+		font.getData().setScale(3, 3);
 	}
 
 	public void controller(){
@@ -84,14 +91,20 @@ public class EcluseController{
 		if (!defect.captorDefect) {
 			higherCaptor.update();
 			lowerCaptor.update();
+		}else{
+			font.draw(batch, "Warning: Captors not working", Gdx.graphics.getWidth()/3 + 50, Gdx.graphics.getHeight()*3/8);
 		}
 		if (!defect.valveDefect) {
 			rightValve.update();
 			leftValve.update();
+		}else{
+			font.draw(batch, "Warning: Valves not working", Gdx.graphics.getWidth()/3 + 50, Gdx.graphics.getHeight()*2/8);
 		}
 		if (!defect.gateDefect) {
 			rightGate.update();
 			leftGate.update();
+		}else{
+			font.draw(batch, "Warning: Gates not working", Gdx.graphics.getWidth()/3 + 50, Gdx.graphics.getHeight()/8);
 		}
 	}
 

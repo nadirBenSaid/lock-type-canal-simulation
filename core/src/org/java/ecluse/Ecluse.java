@@ -34,6 +34,7 @@ public class Ecluse extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0.89f, 0.971f, 0.996f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glEnable(GL20.GL_BLEND);
 		batch.begin();
 		env.render(batch);
 		ecluse.render(batch);
